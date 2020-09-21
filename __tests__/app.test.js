@@ -12,10 +12,11 @@ describe('app', () => {
 
   it('responds with status code 200 and plain text with the request body @ /echo w/ POST', async() => {
     const response = await request(app)
-      .post('/echo');
+      .post('/echo')
+      .send('Hi');
 
-    expect([response.status, response.text])
-      .toEqual([200, expect.stringContaining('Host:')]);
+    expect(response.text)
+      .toEqual('Hi');
   });
 
   it('responds with html with an h1 and the word red @/red using GET method', async() => {
